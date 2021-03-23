@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="log.js"></script> <!-- src 가 올때는 / 로 그냥막으면 안된다 -->
+<script type="text/javascript">
+window.onload=function(){
+	var rootNode = document.documentElement;
+	log("root 태그: " + rootNode.tagName);
+	
+	var bodyNode = document.getElementsByTagName("body").item(0);
+	log("body 태그: " + bodyNode.tagName);
+	
+	var spanList = document.getElementsByTagName("span");
+	log("span 태그의 개수: " + spanList.length);
+	
+	for(var i=0; i<spanList.length; i++){
+		var span = spanList.item(i);
+		log((i+1) + "번째 span의 id : " + span.getAttribute("id"));
+	}
+	
+	var debugConsoleDiv = document.getElementById("debugConsole"); /* 아이디가 디버그콘솔인 애들 (div) 꺼내와라 */
+	log("debugConsole 요소: " + debugConsoleDiv.tagName);
+	
+	var bodyLastChild = bodyNode.lastElementChild; /* lastChild -> lastElementChild lastChild 는 마지막노드를 text로 읽는다*/
+	log("body의 마지막 자식 노드 : " + bodyLastChild.nodeName); /* 버전이 올라가면서 lastElementChild 쓰면 맨 아래 / 막든 div 막든 다 된다  */
+}
+</script>
+</head>
+<body>
+<span id="a">a</span>
+	<p>test
+		<span id="b">b</span>
+	</p>
+	<div>
+		<p>p</p>
+		<span id="c">c</span>
+	</div>
+	<div id="debugConsole" style="border: 1px solid #000;"></div> <!-- / 막으면 마지막 노드를 잘 읽어온다 이렇게 막으면 text로 읽어온다 -->
+</body>
+</html>
+
+<!-- ******dom 캡처 참고******* -->
+
+
+
+

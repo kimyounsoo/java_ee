@@ -1,0 +1,87 @@
+@charset "UTF-8";
+html, body {
+	width: 100%;
+	height: 100%;
+}
+/* 내용이 넘치면 y축에만 스크롤바 */
+html {
+	overflow-y: scroll;
+}
+body, div, dl,dt,dd,ul,ol,li, h1,h2,h3,h4,h5,h6, form, fieldset, p, button {
+	margin: 0;
+	padding: 0;
+}
+body, h1,h2,h3,h4, input, textarea, button, select, option {
+	font-family: '돋움', dotum, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #444;
+}
+img, fieldset {
+	border: 0;
+}
+li {
+	list-style: none;
+}
+input, select, button {
+	vertical-align: middle;
+}
+img {
+	vertical-align: top;
+}
+em, address {
+	font-style: normal;
+}
+a {
+	color: #666;
+	text-decoration: none;
+}
+a:hover, a:focus {
+	color: #222;
+	text-decoration: underline;
+}
+table {
+	border-collapse: collapse;
+}
+
+hr{
+	display: none;
+}
+
+.blind, legend {
+	display: block;
+	overflow: hidden;
+	position: absolute;
+	left: 0;
+	top: -1000em;
+}
+
+/* skip css */
+.skip a {
+	display: block;
+	overflow: hidden;
+	position: absolute;
+	left: 0;
+	top: -1000em;
+	z-index: 9999;
+	width: 100%;
+	background-color: navy;
+	color: white;
+	font: bold 1.3em Tahoma, sans-serif;
+	text-decoration: none;
+	text-align: center;
+}
+.skip a:hover, .skip a:active, .skip a:focus {
+	top: 0;
+	padding: 0.5em 0;
+}
+
+/* 
+SKIP 기능
+스킵메뉴란 tab을 이용해서 마우스가 아닌 키보드로 화면을 제어하고 메뉴 버튼을 누를 수 있게 하는 기능이다.
+naver, daum 등 대표적인 사이트는 모두 적용이 되어있다.
+- html 문서에서 맨 앞에 지정했던 “본문 바로가기(skip)”의 표현을 작성
+- 화면에서 나타나지 않고 있다가 ":focus", 즉 "Tab"키를 눌렀을 때 등장한다.
+- 이때 "Enter"키를 눌러 본문으로 이동하거나, 클릭하여 이동할 수 있다. 
+키보드 만으로 접근을 하는 사용자를 위한 편의를 제공
+Skip Navigation 스킵기능은  body태그(상단) 다음에 오는것이 적합하다
+*/

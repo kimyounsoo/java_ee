@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+function insertQuestion(){
+	var str = prompt("사칙연산의 수식을 입력하세요. (예: 100+50)","");
+	
+	var answer = eval(str);//입력받은 문자열을 수식을 변환
+	var result = "<font color='red'>" + str + " = " + answer;
+	
+	document.getElementById("question").innerHTML = result;// 태그 가져오란 얘기 h1 태그에 result를 집어넣으란 이야기
+}										// innerText 로바꾸면 html 로인식하지않고 문자그대로 인식하게 된다
+</script>
+</head>
+<!-- 페이지를 처음열렸을 때 - 웹브라우저가 HTML 태그 인식 -  insertQuestion() 자동으로 호출 -->
+<body onload="insertQuestion()">
+	<h1 id="question"></h1>
+</body>
+</html>

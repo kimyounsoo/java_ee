@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+	<title>멍청이</title>
+	<style>
+
+	</style>
+	<script>
+	function check(){
+		//유효성 검사
+		//if(현재문서.form이름,변수명.값=="") alert("이름을 입력하세요")
+		//if(document.personForm.name.value=="")
+		if(document.getElementById("name").value=="")// "name" 으로해도 되고 "id" 로 해도된다 28번 라인때문
+		
+				alert("이름을 입력하세요")
+		else
+				document.personForm.submit();
+	}
+	
+	</script>
+ </head>
+ <body>
+ <form name="personForm" method="get" action="http://Localhost:8080/testServlet2/PersonServlet"> <!-- 필드의 변수명안써도 표는 만들어짐-->
+ <table border="1">
+ <tr>
+	<td>이름</td>
+	<td><input type="text" id="name" name = "name" placeholder="이름입력"></td> <!-- submit을 통해서 넘어오는 변수는 id 가 아니라 name 이다 name = "name" 지워주면 널값뜸 -->
+			<!--타입 속성 아이디 속성 네임 속성-->
+ </tr>
+ <tr>
+ <td>성별</td>
+ <td>남<input type="radio" name="gender" value="남성" checked>
+ 여 <input type="radio" name="gender" value="여성">
+ </td>
+ </tr>
+ <tr>
+ <td>색깔</td>
+ <td>
+      <select name="color" style="width: 100px;"> <!--스타일시트 추가하는 인라인 방식 추천하지 않음-->
+        <optgroup label="색깔">
+        <option value="red">빨강</option>
+        <option value="green">초록</option>
+        <option value="blue">파랑</option>
+        <option value="purple">보라</option>
+        <option value="cyan">하늘</option>
+       </optgroup>
+      </select>
+	 </td>
+	</tr>
+	<tr>
+	<td>취미</td>
+	<td>
+	<fieldset>
+	<legend>hobby</legend><!--fieldset그룹핑-->
+	독서 <input type="checkbox" name="hobby" value="독서" > &nbsp;&nbsp;&nbsp;<!--간격 하나에 한칸씩3개라 3칸-->
+	영화 <input type="checkbox" name="hobby" value="영화">&emsp;<!--하나에3칸-->
+	음악 <input type="checkbox" name="hobby" value="음악">
+	게임 <input type="checkbox" name="hobby" value="게임">
+	쇼핑 <input type="checkbox" name="hobby" value="쇼핑">
+	</fieldset>
+	</td>
+	</tr>
+	<tr>
+	<td>과목</td>
+	<td>
+		<select name="subject" size="6" style="width: 100px;" multiple><!--multiple 하면 여러개 선택 가능-->
+		<option value="JAVA">JAVA</option>
+		<option value="Servlet" selected>Servlet</option>
+		<option value="JSP">JSP</option>
+		<option value="SPRING">SPRING</option>
+		</select>
+
+	</td>
+	</tr>
+	<tr>
+	<td colspan="2" align="center">
+	<!--<input type="submit" value="SEND">-->
+	<input type="button" value="SEND" onclick="javascript:check()"> <!--클릭했을때 onclick : 클릭할때 -->
+	<input type="reset" value="CANCEL">
+	</td>
+	</tr>
+	</table>
+  </form>
+ </body>
+</html>
+

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+</head>
+<body>
+<form name="testForm" method="post">
+   <div>이름&emsp;&emsp;
+      <input type="text" name="name">
+   </div><br>
+   <div>생년월일
+      <input type="text" name="birth">
+      <label>년월일(ex: 20210111)</label>
+   </div><br> 
+   <div>
+      <input type="button" value="보내기" onclick="testToServer()">
+   </div>
+   <br><br>
+   <div id="result"></div>
+</form>
+<script type="text/javascript">
+var httpRequest = null;
+
+function testToServer(){
+	var name = document.testForm.name.value;
+	var birth = document.testForm.birth.value;
+	
+	httpRequest = new XMLHttpRequest();//생성
+	httpRequest.onreadystatechange = testFromServer;
+	
+	//POST방식
+	httpRequest.open("POST", "test.jsp", true);
+	httpRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;charset=UTF-8")
+	httpRequest.send("name="+name+"&birth="+birth);
+}
+
+function testFromServer(){
+	if(httpRequest.readyState == 4){
+		if(httpRequest.status == 200){
+			//alert("서버 응답 : "+httpRequest.responseText.trim());// 공백제거해주는 자바스크립트 함수 자바함수 아님
+			
+			//alert창에 띄우려는것이 아니기때문에
+			var result = document.getElementById("result");//id가 result인 div태그 얻어오기
+			//result.innerText = "<font color=blue>"+httpRequest.responseText.trim()+"</font>"; // 이너 텍스트라 글자 그대로 나온다
+			result.innerHTML = "<font color=blue>"+httpRequest.responseText.trim()+"</font>";
+			//---------제이쿼리 문법---------------
+			//$('#result').text(httpRequest.responseText.trim())
+			//$('#result').html("<font color=blue>"+httpRequest.responseText.trim()+"</font>")
+		}
+	}
+}
+</script>
+</body>
+</html>
+
+
+
+

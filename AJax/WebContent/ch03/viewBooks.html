@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+var httpRequest = null;
+
+function loadBooks(){
+	httpRequest = new XMLHttpRequest();
+	httpRequest.onreadystatechange = loadedBooks;
+	httpRequest.open("GET", "books.jsp", true);
+	httpRequest.send();
+}
+
+function loadedBooks(){
+	if(httpRequest.readyState == 4){
+		if(httpRequest.status == 200){
+			var xmlDoc = httpRequest.responseXML; /* Text 가 아니라 XML 로 읽어들이자 */
+			
+			var bookList = xmlDoc.getElementsByTagName("book"); /* xmlDoc 가 responseXML 해서 내용을 쥐고 있기때문에 여기안에서 book태그의 이름을 가진 것들을 getElement 가져온다 */
+			
+			var message = "책 권수 : "+bookList.length+"권\n\n";//alert 출력용
+			//var message = "책 권수 : "+bookList.length+"권<br><br>"; //html 창띄우기용
+			
+			for(var i=0; i<bookList.length; i++){
+				var book = bookList.item(i);
+				//var titleValue = book.getElementsByTagName("title").item(0).firstChild.nodeValue;
+				//var authorValue = book.getElementsByTagName("author").item(0).firstChild.nodeValue;
+				
+				
+				var titleValue = book.firstElementChild.firstChild.nodeValue;
+				var authorValue = book.lastElementChild.firstChild.nodeValue;
+				
+				message += titleValue + " (" + authorValue + ")\n\n"; //alert 출력용
+				//message += titleValue + " (" + authorValue + ")<br>"; //html 창띄우기용
+				
+			}//for
+			
+			//포문 돌리기전 형식 포문 이해용
+/* 			var titleValue = bookList.item(0).getElementsByTagName("title").item(0).firstChild.nodeValue; // 자바프로그래밍 firstChild 만 하면 텍스트 노드를 꺼내오기때문에.nodeValue해줌
+			message += titleValue+"\n";
+			titleValue = bookList.item(1).getElementsByTagName("tilte").item(0).firstChild.nodeValue;
+			message += titleValue+"\n";
+			titleValue = bookList.item(2).getElementsByTagName("tilte").item(0).firstChild.nodeValue;
+			message += titleValue+"\n"; */
+			
+			alert(message); //alert 출력용
+			//document.getElementById("message").innerHTML = message; //html 창띄우기용
+		}
+	}
+}
+
+window.onload=function(){
+	loadBooks();
+}
+</script>
+</head>
+<body>
+책 정보를 alert으로 출력<br><br>
+<div id="message"></div>
+</body>
+</html>

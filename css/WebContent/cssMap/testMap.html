@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>지도가뜰까 안뜰까?</title>
+</head>
+<body>
+<div id="map" style="width: 500px; height: 400px;"></div>
+
+<script type="text/javascript"
+		src="//dapi.kakao.com/v2/maps/sdk.js?appKey=97856f55d5de2f3a20c16714fa1ae275">
+</script>
+<script type="text/javascript">
+var container = document.getElementById("map");
+var options = {
+	center: new daum.maps.LatLng(37.503471, 127.024532),
+	level: 3
+};
+
+var map = new daum.maps.Map(container, options);
+</script>
+</body>
+</html>

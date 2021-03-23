@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+var httpRequest = null; // 전역으로 잡아놓음
+
+function load(url){
+	httpRequest = new XMLHttpRequest();//생성	
+	httpRequest.onreadystatechange = viewMessage;// 응답이 오면 viewMessage 함수 호출
+	httpRequest.open("GET",url,"true");
+	httpRequest.send(null); // simple.jsp 로 보냄
+}
+
+function viewMessage(){
+	if(httpRequest.readyState == 4){ //COMPLETED
+		if(httpRequest.status == 200){ //OK
+			alert(httpRequest.responseText);// simple.jsp의 내용 불러옴 body의 텍스트만 불러오는것이 아니라 몽땅 불러옴
+			console.log(httpRequest.responseText);
+		}else{
+			alert("실패 : "+httpRequest.status)
+		}
+	}
+}
+</script>
+</head>
+<body>
+<input type="button" value="simple.jsp" onclick="load('simple.jsp')">
+</body>
+</html>

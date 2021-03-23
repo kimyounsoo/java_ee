@@ -1,0 +1,11 @@
+@charset "UTF-8";
+/* html의 div 태그 */
+/* css 파일경로 안잡아주면 안나온다 */
+div#displayArea{
+	/* visibility: hidden; *//* 숨겨진채로 크기가 고정된다 visible*/
+	display: none; /* 이건 영역이 없다 js block 추가 */
+	width: 200px;
+	height: 200px;
+	border-color: #6699ff;
+	border-style: double;
+}

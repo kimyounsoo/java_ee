@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+function printTime(){
+	var days = ["일","월","화","수","목","금","토"];
+	var today = new Date();
+	
+	var yy = today.getFullYear();
+	var mm = today.getMonth() + 1; // 기본이 0이라 +1
+	var dd = today.getDate();
+	var i = today.getDay(); // 요일(0~6)
+	var day = days[i]
+	var hh = today.getHours();
+	var mi = today.getMinutes();
+	var ss = today.getSeconds();
+	
+	var result = yy+"-"+mm+"-"+dd+" "+day+"요일 " +hh+":"+mi+":"+ss;
+	
+	//id가 timer인 태그 잡아오삼
+	document.getElementById("timer").innerHTML = result;
+	
+}
+
+function startTime(){
+	setInterval(printTime, 1000); // 1초마다 printTime을 호출
+	//setTimeout(printTime, 1000); 
+}
+</script>
+</head>
+<body onload="startTime()">
+<h1 id="timer">현재시간을 보여줍니다</h1>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="userSQL">
+	<!-- 오라클컬럼명과 user.bean.UserDTO 의 이름 -->
+	<!-- UserDTO name과 오라클 컬럼명(column) name 을 맵핑 -->
+	<resultMap type="user" id="userResult">
+		<result property="name" column="NAME"/>
+		<result property="id" column="ID"/>
+		<result property="pwd" column="PWD"/>
+	</resultMap>
+	
+	
+	<insert id="write" parameterType="user">
+		insert into usertable values(#{name}, #{id}, #{pwd})
+	</insert>
+
+	<!-- select 해서 나온 결과를 UserDTO컬럼과의 매핑을 자동으로 해준다 그리고 UserDTO를 자동으로 List에 담는다 -->
+	<!--  resultType="user" 에서 변경 resultMap="userResult" 위에 리절트 맵에서 매핑 변경해줘서 적용시키기 위해서 -->
+	<select id="getUserList" resultMap="userResult">
+		select * from usertable
+	</select>
+	<!-- 데이터를 받아오는 경우에는parameterType과 파라미터의 자료형을 입력해줘야한다 위에꺼는 목록을 뿌리기만하면 되는거라 
+		데이터를 받아오지 않았다 -->
+	<select id="getUser" parameterType="String" resultType="user">
+		select * from usertable where id=#{id}
+	</select>
+
+	<!-- 위와마찬가지로 자료형(map)써준다 String과는 다르게 디폴트가 아니므로 풀쿼리네임으로 써준다 -->
+	<update id="modify" parameterType="java.util.Map">
+		update usertable set name=#{name}, pwd=#{pwd} where id=#{id}
+	</update>
+
+	<delete id="delete" parameterType="String">
+		delete usertable where id=#{id}
+	</delete>
+
+<!-- <select id="search" parameterType="java.util.Map" resultType="user">
+		select * from usertable where ${columnName} like '%'||#{value}||'%'
+	</select> -->
+	
+<!-- <select id="search" parameterType="java.util.Map" resultType="user">
+		select * from usertable where 
+		<if test="columnName == 'name'">
+			name like '%'||#{value}||'%'
+		</if>
+		<if test="columnName == 'id'">
+			id like '%'||#{value}||'%'
+		</if>
+	</select> -->	
+	<select id="search" parameterType="user" resultType="user">
+		select * from usertable
+		where 1=0
+			<if test="name != null"> or name like '%'||#{name}||'%'</if>
+			<if test="id != null"> or id like '%'||#{id}||'%'</if>
+		
+	</select>
+	
+</mapper>
+
+
+
+
+
+

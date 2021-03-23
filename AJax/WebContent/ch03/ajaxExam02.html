@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="ajaxExam02.js"></script>
+<link rel="stylesheet" href="ajaxExam02.css" type="text/css"/>
+</head>
+<body>
+<form action="#"> <!-- submit도 없고 주소도 #이라 있으나마나 없애도노상관 -->
+	<input type="button" value="개설강좌 확인" onclick="startMethod()"/><br/>
+</form>
+
+<div id="displayArea">
+	<table border="1" cellpadding="0" cellspacing="0">
+		<tbody id="resultDisplay"> <!-- xml 의  subject 하나가 tr 하나로 잡힌다 -->
+		</tbody>
+	</table>
+</div>
+</body>
+</html>

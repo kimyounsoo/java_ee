@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+var httpRequest = null;
+
+function helloToServer(){
+	//		    한글처리 아래 해줘서 여기안해줘도 지금은 되지만 아래것이 안먹힐때도있어서 해주는게 좋다고한다
+	var name = encodeURIComponent(document.inputForm.name.value); // 자바스크립트 문법 기억할것
+	
+	httpRequest = new XMLHttpRequest();//생성
+	httpRequest.onreadystatechange = helloFromServer;
+	
+	//GET방식
+	//httpRequest.open("GET", "hello.jsp?name="+name, true);
+	//httpRequest.send(null);
+	
+	//POST방식
+	httpRequest.open("POST", "hello.jsp", true);
+	//이거 안해주면 null님 환영합니다 이렇게 나온다 연결방식 명시해줌 url을통해서 데이터를 보내는 dtd이게없으면 데이터를 못받는다(MIME타입)
+	//"application/x-www-form-urlencoded; 데이터를 보내는 선언문 charset=UTF-8 은한글처리
+	httpRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;charset=UTF-8")
+	httpRequest.send("name="+name) // name = 공백주면 인식해서 안됨 
+}
+
+function helloFromServer(){
+	if(httpRequest.readyState == 4){ //COMPLETED
+		if(httpRequest.status == 200){ //OK
+			alert("서버 응답 : "+httpRequest.responseText);
+		}
+	}
+}
+</script>
+</head>
+<body>
+<form name="inputForm" method="get" action="">
+	<input type="text" name="name">
+	<input type="button" value="입력" onclick="helloToServer()"/>
+</form>
+</body>
+</html>

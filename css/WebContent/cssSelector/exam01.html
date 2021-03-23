@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>셀렉터 만들기</title>
+<style type="text/css">
+h3, li { /* , 를찍은것은 자손이 아니라 각자 따로 관리하겠다는 것 */
+	color: brown;
+}
+div > div > strong { /* 자손 셀렉터 - div 안에 div 안에 strong 태그  */
+	background: yellow;
+}
+ul strong { /* 후손 셀렉터  */
+	color: dodgerblue;
+}
+.warning { /* 클래스 속성  */
+	color: red;
+}
+body.main{ /* body 태그 안에 메인 클래스 속성 */
+	background: aliceblue;
+}
+#list {
+	background: mistyrose;
+}
+#list span {
+	color: forestgreen;
+}
+h3:first-letter { /* 가상 클래스 - 첫 번째 문자를 선택 W  */
+	color: red;
+	font-size: 25px;
+}
+li:hover { /* 가상 클래스  */
+	background: yellowgreen;
+}
+::selection { /* 마우스로 드래그 하면 글자색은 빨강, 바탕색은 노랑색으로 변한다 */
+	color: red;
+	background: yellow;
+}
+</style>
+</head>
+<body class="main">
+<h3>Web Programming</h3>
+<hr>
+<div>
+	<div>2학기 <strong>학습 내용</strong>입니다.</div>
+	<ul id="list">
+		<li><span>HTML5</span></li>
+		<li><strong>CSS</strong></li>
+		<li>JAVASCRIPT</li>
+		</ul>
+		<div class="warning">60점 이하는 F</div>
+	</div>
+</body>
+</html>
